@@ -3,13 +3,18 @@
     "browser": true,
     "node": true
   },
-  "extends": "eslint:recommended",
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "semi": 2,
-    "no-console": 0
+    "no-console": 0,
+    "react/prop-types": 0
   }
 }
