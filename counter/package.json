@@ -20,6 +20,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "expect": "^1.14.0"
+    "expect": "^1.14.0",
+    "redux": "^3.3.1"
   }
 }
