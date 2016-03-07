@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 const todo = (state, action) => {
   switch (action.type) {
@@ -48,18 +48,12 @@ const visibilityFilter = (
   }
 };
 
-const store = createStore((state = {}, action) => {
-  return {
-    todos: todos(
-      state.todos,
-      action
-    ),
-    visibilityFilter: visibilityFilter(
-      state.visibilityFilter,
-      action
-    )
-  };
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
 });
+
+const store = createStore(todoApp);
 
 console.log('Initial state:');
 console.log(store.getState());
