@@ -5,16 +5,17 @@ export default function AddTodo({ dispatch }) {
   let input;
 
   return (
-    <div>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      dispatch(addTodo(input.value));
+      input.value = '';
+    }}>
       <input ref={node => {
         input = node;
       }} />
-      <button onClick={() => {
-        dispatch(addTodo(input.value));
-        input.value = '';
-      }}>
+      <button>
         Add todo
       </button>
-    </div>
+    </form>
   );
 }
