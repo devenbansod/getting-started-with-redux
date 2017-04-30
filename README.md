@@ -10,7 +10,7 @@ To run the `counter` or `todos` example, `cd` into the directory and run:
 npm install
 ```
 
-You can then start the `webpack-dev-server` by running:
+You can then start the [`webpack-dev-server`](https://webpack.github.io/docs/webpack-dev-server.html) by running:
 
 ```
 npm start
