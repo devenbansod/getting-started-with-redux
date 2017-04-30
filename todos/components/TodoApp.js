@@ -3,13 +3,11 @@ import AddTodo from '../containers/AddTodo';
 import VisibleTodoList  from '../containers/VisibleTodoList';
 import Footer from '../components/Footer';
 
-export default function TodoApp({ params }) {
+export default function TodoApp() {
   return (
     <div>
       <AddTodo />
-      <VisibleTodoList
-        filter={params.filter || 'all'}
-      />
+      <VisibleTodoList />
       <Footer />
     </div>
   );
