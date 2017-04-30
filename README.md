@@ -1,6 +1,6 @@
 # getting-started-with-redux
 
-> Code from Dan Abramov's [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux)
+> Code from Dan Abramov's [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) and [Building React Applications with Idiomatic Redux](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
 
 ## Usage
 
