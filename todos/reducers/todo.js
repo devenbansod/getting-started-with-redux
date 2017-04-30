@@ -1,4 +1,4 @@
-export default function todo(state, action) {
+const todo = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return {
@@ -18,4 +18,6 @@ export default function todo(state, action) {
     default:
       return state;
   }
-}
+};
+
+export default todo;
