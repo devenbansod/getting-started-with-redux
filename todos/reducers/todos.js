@@ -1,6 +1,6 @@
 import todo from './todo';
 
-export default function todos (state = [], action) {
+const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [
@@ -12,4 +12,17 @@ export default function todos (state = [], action) {
     default:
       return state;
   }
-}
+};
+
+export default todos;
+
+export const getVisibleTodos = (state, filter) => {
+  switch (filter) {
+    case 'all':
+      return state;
+    case 'completed':
+      return state.filter(t => t.completed);
+    case 'active':
+      return state.filter(t => !t.completed);
+  }
+};
