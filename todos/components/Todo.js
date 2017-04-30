@@ -3,7 +3,7 @@ import React from 'react';
 export default function Todo({
   onClick,
   completed,
-  text
+  text,
 }) {
   return (
     <li onClick={onClick}
@@ -11,7 +11,7 @@ export default function Todo({
         textDecoration:
           completed ?
             'line-through' :
-            'none'
+            'none',
           }}>
       {text}
     </li>

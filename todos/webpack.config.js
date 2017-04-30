@@ -6,7 +6,7 @@ module.exports = {
   entry: './app.js',
   output: {
     path: __dirname,
-    filename: './bundle.js'
+    filename: './bundle.js',
   },
   module: {
     rules: [
@@ -16,13 +16,13 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react', 'stage-3']
-          }
-        }
-      }
-    ]
+            presets: ['env', 'react', 'stage-3'],
+          },
+        },
+      },
+    ],
   },
   devServer: {
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 };

@@ -3,7 +3,7 @@ import Todo from './todo';
 
 export default function TodoList({
   todos,
-  onTodoClick
+  onTodoClick,
 }) {
   return (
     <ul>

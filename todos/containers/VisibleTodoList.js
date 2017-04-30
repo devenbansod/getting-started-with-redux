@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     todos: getVisibleTodos(
       state.todos,
       ownProps.filter
-    )
+    ),
   };
 };
 
@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onTodoClick: (id) => {
       dispatch(toggleTodo(id));
-    }
+    },
   };
 };
 

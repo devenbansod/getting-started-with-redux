@@ -4,7 +4,7 @@ export default function todo(state, action) {
       return {
         id: action.id,
         text: action.text,
-        completed: false
+        completed: false,
       };
     case 'TOGGLE_TODO':
       if (state.id !== action.id) {
@@ -13,7 +13,7 @@ export default function todo(state, action) {
 
       return {
         ...state,
-        completed: !state.completed
+        completed: !state.completed,
       };
     default:
       return state;
