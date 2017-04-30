@@ -1,16 +1,25 @@
+'use strict';
+
+const path = require('path');
+
 module.exports = {
   entry: './app.js',
   output: {
+    path: __dirname,
     filename: './bundle.js'
   },
   module: {
-    loaders: [{
-      test: /.js$/,
-      exclude: /(node_modules)/,
-      loader: 'babel',
-      query: {
-        presets: ['es2015', 'react', 'stage-2']
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: path.resolve(__dirname, 'node_modules'),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env', 'react', 'stage-3']
+          }
+        }
       }
-    }]
+    ]
   }
 };
