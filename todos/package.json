@@ -27,6 +27,7 @@
     "expect": "^1.14.0",
     "lodash": "^4.17.4",
     "node-uuid": "^1.4.8",
+    "normalizr": "^3.2.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
