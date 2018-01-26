@@ -2,79 +2,65 @@ import expect from 'expect';
 import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import deepFreeze from 'deep-freeze';
 
-const counter = (state = 0, action) => {
-  switch(action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
+const addCounter = (list) => {
+  return [...list, 0];
 };
 
-const store = createStore(counter);
-
-const Counter = ({
-  value,
-  onIncrement,
-  onDecrement
-}) => (
-  <div>
-    <h1>{value}</h1>
-    <button onClick={onIncrement}>+</button>
-    <button onClick={onDecrement}>-</button>
-  </div>
-);
-
-const render = () => {
-  ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement={() =>
-        store.dispatch({
-          type: 'INCREMENT'
-        })
-      }
-      onDecrement={() =>
-        store.dispatch({
-          type: 'DECREMENT'
-        })
-      }
-    />,
-    document.getElementById('root')
-  )
+const removeCounter = (list, index) => {
+  return [
+    ...list.slice(0, index),
+    ...list.slice(index + 1)
+  ];
 };
 
-store.subscribe(render);
-render();
 
-/**
- * Tests for counter
- */
-expect(
-  counter(0, { type: 'INCREMENT' })
-).toEqual(1);
 
-expect(
-  counter(1, { type: 'INCREMENT' })
-).toEqual(2);
+const incrementCounter = (list, index) => {
+  return [
+    ...list.slice(0, index),
+    list[index] + 1,
+    ...list.slice(index + 1)
+  ];
+};
 
-expect(
-  counter(2, { type: 'DECREMENT' })
-).toEqual(1);
 
-expect(
-  counter(1, { type: 'DECREMENT' })
-).toEqual(0);
+/** Tests */
+const testAddCounter = () => {
+  const listBefore = [];
+  const listAfter = [0];
 
-expect(
-  counter(1, { type: 'SOMETHING_ELSE' })
-).toEqual(1);
+  deepFreeze(listBefore);
 
-expect(
-  counter(undefined, {})
-).toEqual(0);
+  expect(
+    addCounter(listBefore)
+  ).toEqual(listAfter);
+};
 
-console.log('Tests passed!');
+const testRemoveCounter = () => {
+  const listBefore = [1, 2, 5];
+  const listAfter = [1, 5];
+
+  deepFreeze(listBefore);
+
+  expect(
+    removeCounter(listBefore, 1)
+  ).toEqual(listAfter);
+};
+
+const testIncrementCounter = () => {
+  const listBefore = [1, 2, 5];
+  const listAfter = [1, 3, 5];
+
+  deepFreeze(listBefore);
+
+  expect(
+    incrementCounter(listBefore, 1)
+  ).toEqual(listAfter);
+};
+
+testAddCounter();
+testRemoveCounter();
+testIncrementCounter();
+console.log('All tests passed');
