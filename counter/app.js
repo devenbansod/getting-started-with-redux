@@ -11,6 +11,10 @@ const counter = (state = 0, action) => {
   }
 };
 
+
+/**
+ * Tests for counter
+ */
 expect(
   counter(0, { type: 'INCREMENT' })
 ).toEqual(1);
@@ -25,6 +29,14 @@ expect(
 
 expect(
   counter(1, { type: 'DECREMENT' })
+).toEqual(0);
+
+expect(
+  counter(1, { type: 'SOMETHING_ELSE' })
+).toEqual(1);
+
+expect(
+  counter(undefined, {})
 ).toEqual(0);
 
 console.log('Tests passed!');
