@@ -25,6 +25,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "deep-freeze": "0.0.1",
     "expect": "^1.14.0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "redux": "^3.7.2"
