@@ -6,6 +6,7 @@ import deepFreeze from 'deep-freeze';
 import PropTypes from 'prop-types';
 import { Provider, connect } from 'react-redux';
 
+/** Reducers */
 const todo = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
@@ -27,7 +28,6 @@ const todo = (state, action) => {
       return state;
   }
 };
-
 const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
@@ -41,7 +41,6 @@ const todos = (state = [], action) => {
       return state;
   }
 }
-
 const visibilityFilter = (state = 'SHOW_ALL', action) => {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
@@ -51,6 +50,7 @@ const visibilityFilter = (state = 'SHOW_ALL', action) => {
   }
 };
 
+/** Reducer combiner (alternative to Redux.combineReducers) */
 const combineReducers = (reducers) => {
   return (state = {}, action) => {
     return Object.keys(reducers).reduce(
@@ -67,6 +67,30 @@ const combineReducers = (reducers) => {
   };
 };
 
+/** Action creators */
+const addTodo = (text) => {
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text
+  };
+}
+
+const setVisibilityFilter = (filter) => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  };
+}
+
+const toggleTodo = (id) => {
+  return {
+    type: 'TOGGLE_TODO',
+    id
+  };
+}
+
+/** Components */
 const Link = ({
   active,
   children,
@@ -95,10 +119,9 @@ const mapStateToFilterLinkProps = (state, ownProps) => {
 }
 const mapDispatchToFilterLinkProps = (dispatch, ownProps) => {
   return {
-    onClick: () => dispatch({
-        type: 'SET_VISIBILITY_FILTER',
-        filter: ownProps.filter
-      })
+    onClick: () => dispatch(
+        setVisibilityFilter(ownProps.filter)
+      )
   }
 }
 const FilterLink = connect(
@@ -131,11 +154,7 @@ let AddTodo = ({ dispatch }) => {
         input = node;
       }} />
       <button onClick={() => {
-        dispatch({
-          type: 'ADD_TODO',
-          id: nextTodoId++,
-          text: input.value
-        })
+        dispatch(addTodo(input.value))
         input.value = '';
       }}
       >
@@ -191,10 +210,7 @@ const mapStateToTodoListProps = (state) => {
 const mapDispatchToTodoListProps = (dispatch) => {
   return {
     onTodoClick: (id) =>
-      dispatch({
-        type: 'TOGGLE_TODO',
-        id
-      })
+      dispatch(toggleTodo(id))
   };
 }
 const VisibleTodoList = connect(
